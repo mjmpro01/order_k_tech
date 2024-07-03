@@ -368,13 +368,14 @@ export interface ApiMenuMenu extends Schema.CollectionType {
     singularName: 'menu';
     pluralName: 'menus';
     displayName: 'Menu';
+    description: '';
   };
   options: {
     draftAndPublish: true;
   };
   attributes: {
     week_menu: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
-    monday: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
+    monday: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     tuesday: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     wednesday: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
     thursday: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
@@ -406,6 +407,9 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     quantity: Attribute.Integer & Attribute.DefaultTo<1>;
     note: Attribute.Blocks;
     menu: Attribute.Relation<'api::order.order', 'oneToOne', 'api::menu.menu'>;
+    type: Attribute.Enumeration<
+      ['MONDAY', 'TUESDAY', 'WEDNESDAY', 'THUSDAY', 'FRIDAY']
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
