@@ -395,18 +395,19 @@ export interface ApiOrderOrder extends Schema.CollectionType {
     singularName: 'order';
     pluralName: 'orders';
     displayName: 'Order';
+    description: '';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     name: Attribute.String;
     dish: Attribute.String;
     quantity: Attribute.Integer & Attribute.DefaultTo<1>;
     note: Attribute.Blocks;
+    menu: Attribute.Relation<'api::order.order', 'oneToOne', 'api::menu.menu'>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
       'api::order.order',
       'oneToOne',
